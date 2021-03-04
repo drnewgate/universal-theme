@@ -29,7 +29,7 @@
         <div class="post-text">
           <?php the_category(); ?>
           <h2 class="post-title"><?php the_title(); ?></h2>
-            <a href="<?php echo get_the_permalink(); ?>" class="more">Читать далее</a>
+            <a href="<?php echo the_permalink(); ?>" class="more">Читать далее</a>
         </div>
         <!-- /.post-text -->
         <?php 
