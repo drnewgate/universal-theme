@@ -291,6 +291,10 @@ body {
   text-decoration: none;
 }
 
+.hero .right .post-categories a:visited {
+  color: #3BBDC4;
+}
+
 .hero .right .post-permalink {
   text-decoration: none;
   color: #4B5157;
