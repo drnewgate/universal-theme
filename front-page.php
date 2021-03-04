@@ -8,7 +8,6 @@
 
           $myposts = get_posts([ 
             'numberposts' => 1,
-            'category_name' => 'javascript',
           ]);
 
           if( $myposts ){
@@ -51,6 +50,8 @@
               $myposts = get_posts([ 
                 'numberposts' => 5,
                 'offset' => 1,
+                  'category_name' => 'javascript, css, html, web-design',
+
               ]);
 
               if( $myposts ){
@@ -76,8 +77,47 @@
       </div>
       <!-- /.right -->
     </div>
-    <!-- .hero -->
-          
+    <!-- .hero --> 
   </div>
   <!-- .conatainer -->
 </main>
+<div class="container">
+<ul class="article-list">
+  <?php
+    global $post;
+
+    $myposts = get_posts([ 
+      'numberposts' => 4,
+      'category_name' => 'articles',
+
+    ]);
+
+    if( $myposts ){
+      foreach( $myposts as $post ){
+        setup_postdata( $post );
+    ?>
+  <!-- Вывода постов, функции цикла: the_title() и т.д. -->
+  <li class="article-item">
+    <a class='article-permalink' href="<?php echo get_the_permalink(); ?>">
+      <h4 class="article-title">
+        <?php the_title(); ?>
+      </h4>
+    </a>
+ <img width="65" height="65" src="<?php echo get_the_post_thumbnail_url(null, 'thumbnail'); ?>" alt="">
+
+  </li>
+   <?php 
+      }
+        } else {
+    // Постов не найдено
+        ?>
+        <p>Постов нет</p>
+        <?php 
+        }
+      wp_reset_postdata(); // Сбрасываем $post
+    ?>
+</ul>
+</div>
+<!-- /.conatainer -->
+
+<?php get_footer (); ?>
