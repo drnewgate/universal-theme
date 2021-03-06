@@ -741,6 +741,10 @@ body {
   position: relative;
 }
 
+.widget-downloader-icon {
+  margin-right: 10px;
+}
+
 .widget-downloader .widget-title {
   margin-top: 0;
   font-family: Roboto Slab;
@@ -773,10 +777,6 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.widget-downloader .widget-icon {
-  margin-right: 10px;
 }
 
 .widget-downloader .discription {
