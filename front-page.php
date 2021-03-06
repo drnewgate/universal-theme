@@ -114,7 +114,8 @@
     ?>
 </ul>
 <!-- /.article-list -->
-    <ul class="article-grid">
+ <div class="main-grid">
+       <ul class="article-grid">
      <?php		
         global $post;
         // формируем запрос в базу данных
@@ -235,7 +236,9 @@
         wp_reset_postdata(); // Сбрасываем $post
       ?>
     </ul>
+    <?php get_sidebar(); ?>
+ </div>
+ <!-- /.main-grid -->
 </div>
 <!-- /.conatainer -->
-
 <?php get_footer (); ?>
