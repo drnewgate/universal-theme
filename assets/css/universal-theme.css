@@ -683,6 +683,10 @@ body {
   position: relative;
 }
 
+.article-grid-item-default a:visited {
+  color: #262D33;
+}
+
 .article-grid-item-default .article-thumb {
   height: 275px;
   -o-object-fit: cover;
@@ -833,23 +837,17 @@ body {
   border-radius: 5px;
 }
 
-.widget .widget-social {
-  display: inline;
-  height: 30px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
 .widget .widget-social-icon {
   padding-left: 50px;
   padding-bottom: 20px;
 }
 
-.widget .widget-title {
+.widget-social > h2 {
+  font-family: 'Roboto Slab';
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  text-transform: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -857,7 +855,4 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   border-bottom: none;
-  text-transform: none;
-  font-size: 20px;
-  line-height: 25px;
 }
