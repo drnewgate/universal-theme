@@ -342,7 +342,7 @@ function edit_widget_tag_cloud_args($args) {
 	$args['unit'] = 'px';
 	$args['smallest'] = '14';
 	$args['largest'] = '14';
-	$args['number'] = '8';
+	$args['number'] = '10';
 
 	return $args;
 }
