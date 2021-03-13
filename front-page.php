@@ -26,7 +26,16 @@
           </div>
         </a>
         <div class="post-text">
-          <?php the_category(); ?>
+          <?php 
+          foreach (get_the_category() as $category) {
+            printf (
+              '<a href="%s" class="category-link %s">%s</a>',
+              esc_url( get_category_link( $category ) ),
+              esc_html( $category -> slug),
+              esc_html( $category -> name), 
+            );
+          }
+          ?>
           <h2 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h2>
             <a href="<?php echo the_permalink(); ?>" class="more">Читать далее</a>
         </div>
@@ -60,7 +69,16 @@
            ?>
           <!-- Вывода постов, функции цикла: the_title() и т.д. -->
           <li class="post">
-            <?php the_category(); ?>
+            <?php 
+          foreach (get_the_category() as $category) {
+            printf (
+              '<a href="%s" class="category-link %s">%s</a>',
+              esc_url( get_category_link( $category ) ),
+              esc_html( $category -> slug),
+              esc_html( $category -> name), 
+            );
+          }
+          ?>
             <a class='post-permalink' href="<?php echo get_the_permalink(); ?>">
               <h4 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h4>
           </a>
@@ -219,7 +237,7 @@
               default:?>
             <li class="article-grid-item article-grid-item-default">
               <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
-                  <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 43, '...'); ?></h4>
+                  <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></h4>
                   <p class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 80, '...'); ?></p>
                   <span class="article-date"><?php the_time( 'j F Y' )?></span>
                 </a>
@@ -238,7 +256,7 @@
         wp_reset_postdata(); // Сбрасываем $post
       ?>
     </ul>
-    <?php get_sidebar(); ?>
+    <?php get_sidebar('home-top'); ?>
  </div>
  <!-- /.main-grid -->
 </div>
@@ -298,7 +316,18 @@ wp_reset_postdata(); // Сбрасываем $post
             <img src="<?php echo get_template_directory_uri() . '/assets/images/bookmark.svg'; ?>">
           </svg>
         </button>
-        <a href="#" class="category-link"><?php the_category(); ?></a>
+        <a href="#" class="category-link">
+        <?php 
+          foreach (get_the_category() as $category) {
+            printf (
+              '<a href="%s" class="category-link %s">%s</a>',
+              esc_url( get_category_link( $category ) ),
+              esc_html( $category -> slug),
+              esc_html( $category -> name), 
+            );
+          }
+          ?>
+        </a>
         <a href="#" class="digest-item-permalink">
           <h3 class="digest-title"><?php the_title(); ?></h3>
         </a>
@@ -327,6 +356,8 @@ wp_reset_postdata(); // Сбрасываем $post
       wp_reset_postdata(); // Сбрасываем $post
     ?>
   </ul>
+    <!-- Подключаем нижний сайдбар-->
+    <?php get_sidebar('home-bottom'); ?>
 </div>
 <!-- /.digest-wrapper -->
 </div>
