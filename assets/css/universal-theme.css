@@ -897,6 +897,8 @@ body {
   width: 60px;
   height: 60px;
   margin-right: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .widget-recent-posts h4 {

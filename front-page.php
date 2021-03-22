@@ -338,10 +338,7 @@ wp_reset_postdata(); // Сбрасываем $post
             setup_postdata( $post );
     ?>
     <li class="digest-item">
-      <a href="<?php echo get_the_permalink(); ?>" class="digest-item-permalink">
-      <?php 
-      
-      ?>
+      <a href="<?php the_permalink(); ?>" class="digest-item-permalink">
         <img src="<?php 
         if( has_post_thumbnail() ) {
         echo get_the_post_thumbnail_url();
@@ -357,7 +354,6 @@ wp_reset_postdata(); // Сбрасываем $post
             <use xlink:href="<?php echo get_template_directory_uri( )?>/assets/images/sprite.svg#bookmark"></use>
           </svg>
         </button>
-        <a href="#" class="category-link">
         <?php 
           foreach (get_the_category() as $category) {
             printf (
@@ -368,8 +364,7 @@ wp_reset_postdata(); // Сбрасываем $post
             );
           }
           ?>
-        </a>
-        <a href="#" class="digest-item-permalink">
+        <a href="<?php the_permalink(); ?>" class="digest-item-permalink">
           <h3 class="digest-title"><?php the_title(); ?></h3>
         </a>
         <p class="digest-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 170, '...'); ?></p>
@@ -488,13 +483,19 @@ wp_reset_postdata(); // Сбрасываем $post
           if( $myposts ){
             foreach( $myposts as $post ){
               setup_postdata( $post );
+              $category = get_the_category();
+              
+              //echo '<pre>';
+              //var_dump($category);
+              //echo '</pre>';
         ?>
-            <a href="#" class="category-link"></a>
+        
+            <a href="<?php echo get_category_link( $category[0] ); ?>" class="category-link"><?php echo $category[0]->name; ?></a>
             <h3 class="career-post-title"><?php the_title(); ?></h3>
             <p class="career-post-excerpt">
               <?php echo mb_strimwidth(get_the_excerpt(), 0, 80, '...'); ?>
             </p>
-            <a href="<?php echo the_permalink(); ?>" class="more">Читать далее</a>
+            <a href="<?php the_permalink(); ?>" class="more">Читать далее</a>
         <?php 
             }
           } else {
@@ -506,21 +507,23 @@ wp_reset_postdata(); // Сбрасываем $post
         </div>
         <!-- /.career-post -->
         <div class="other-posts">
-          <a href="#" class="other-post other-post-default">
             <?php		
-    global $post;
+              global $post;
 
-    $query = new WP_Query( [
-      'category_name' => 'career',
-    ] );
+              $query = new WP_Query( [
+                'post_per_page' => 2,
+                'category_name' => 'novosti',
+              ] );
 
-  if ( $query->have_posts() ) {
-    while ( $query->have_posts() ) {
-      $query->the_post();
-      ?>
+          if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+              $query->the_post();
+              ?>
+          <a href="<?php the_permalink(); ?>" class="other-post other-post-default">
           <h4 class="other-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 25, '...'); ?></h4>
           <p class="other-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 80, '...'); ?></p>
           <span class="other-post-date"><?php the_time( 'j F' )?></span>
+          </a>
 		<?php 
           }
         } else {
@@ -529,7 +532,7 @@ wp_reset_postdata(); // Сбрасываем $post
 
         wp_reset_postdata(); // Сбрасываем $post
         ?>
-          </a>
+          
         </div>
         <!-- /.other-posts -->
       </div>

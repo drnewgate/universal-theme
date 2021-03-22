@@ -14,4 +14,4 @@ if ( ! is_active_sidebar( 'main-sidebar-bottom' ) ) {
 
 <aside id="sidebar-bottom" class="sidebar-front-page">
 	<?php dynamic_sidebar( 'main-sidebar-bottom' ); ?>
-</aside><!-- #secondary -->
+</aside>
