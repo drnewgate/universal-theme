@@ -430,7 +430,7 @@ wp_reset_postdata(); // Сбрасываем $post
                 <!-- Slides -->
                 <?php $images = get_attached_media( 'image' );
                   foreach ($images as $image) {
-                    echo '<div class="swiper-slide"><img scr"';
+                    echo '<div class="swiper-slide"><img src="';
                     print_r($image -> guid);
                     echo '"></div>';
                 }
@@ -475,27 +475,60 @@ wp_reset_postdata(); // Сбрасываем $post
       }
       wp_reset_postdata(); // Сбрасываем $post
     ?>
-
       <div class="other">
         <div class="career-post">
-          <a href="#" class="category-link">Карьера</a>
-          <h3 class="career-post-title">Вопросы на собеседовании для джуна</h3>
-          <p class="career-post-excerpt">
-            Каверзные и не очень вопросы, которых боятся новички, когда идут на собеседование
-          </p>
-          <a href="#" class="more">Читать далее</a>
+          <?php
+            global $post;
+
+          $myposts = get_posts([ 
+            'post_per_page' => 1,
+            'category_name' => 'career'
+          ]);
+
+          if( $myposts ){
+            foreach( $myposts as $post ){
+              setup_postdata( $post );
+        ?>
+            <a href="#" class="category-link"></a>
+            <h3 class="career-post-title"><?php the_title(); ?></h3>
+            <p class="career-post-excerpt">
+              <?php echo mb_strimwidth(get_the_excerpt(), 0, 80, '...'); ?>
+            </p>
+            <a href="<?php echo the_permalink(); ?>" class="more">Читать далее</a>
+        <?php 
+            }
+          } else {
+            // Постов не найдено
+            ?> <p>Постов нет</p> <?php 
+          }
+          wp_reset_postdata(); // Сбрасываем $post
+         ?>
         </div>
         <!-- /.career-post -->
         <div class="other-posts">
           <a href="#" class="other-post other-post-default">
-            <h4 class="other-post-title">Самые крутые функции в...</h4>
-            <p class="other-post-excerpt">Тут полезный контент</p>
-            <span class="other-post-date">3 декабря 2020</span>
-          </a>
-          <a href="#" class="other-post other-post-default">
-            <h4 class="other-post-title">Новые возможности язык...</h4>
-            <p class="other-post-excerpt">Тут про новые фичи языка CSS</p>
-            <span class="other-post-date">3 декабря 2020</span>
+            <?php		
+    global $post;
+
+    $query = new WP_Query( [
+      'category_name' => 'career',
+    ] );
+
+  if ( $query->have_posts() ) {
+    while ( $query->have_posts() ) {
+      $query->the_post();
+      ?>
+          <h4 class="other-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 25, '...'); ?></h4>
+          <p class="other-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 80, '...'); ?></p>
+          <span class="other-post-date"><?php the_time( 'j F' )?></span>
+		<?php 
+          }
+        } else {
+          // Постов не найдено
+        }
+
+        wp_reset_postdata(); // Сбрасываем $post
+        ?>
           </a>
         </div>
         <!-- /.other-posts -->
@@ -507,5 +540,4 @@ wp_reset_postdata(); // Сбрасываем $post
   <!-- /.container -->
 </div>
 <!-- /.special -->
-
 <?php get_footer (); ?>

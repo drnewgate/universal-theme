@@ -1003,6 +1003,7 @@ aside#sidebar-bottom {
 
 .digest-wrapper {
   margin-top: 60px;
+  margin-bottom: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1226,7 +1227,7 @@ ul {
   height: 100%;
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(64, 48, 61, 0.35)), to(rgba(64, 48, 61, 0.35)));
   background: linear-gradient(0deg, rgba(64, 48, 61, 0.35), rgba(64, 48, 61, 0.35));
-  z-index: 1;
+  z-index: 2;
 }
 
 .photo-report-button {
@@ -1245,7 +1246,7 @@ ul {
   margin-bottom: 20px;
 }
 
-.photo-report-button:hover {
+.photo-report-button:hover, .photo-report-button:visited {
   color: #ffffff;
 }
 
@@ -1362,7 +1363,7 @@ ul {
 .career-post {
   border-radius: 10px;
   overflow: hidden;
-  background: #D1E2EB url(../images/career.png) no-repeat right top/cover;
+  background: #b4d1e0 url(../images/career.png) no-repeat right top/cover;
   min-height: 370px;
   padding: 35px;
 }
